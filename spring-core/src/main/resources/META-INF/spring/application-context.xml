@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <context:annotation-config/>
+    <aop:aspectj-autoproxy/>
+    <context:spring-configured/>
+
+    <context:component-scan base-package="com.lisun.spring.beans"/>
+
+    <!--<bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor"/>-->
+
+    <bean id="firstBean" class="com.lisun.spring.beans.FirstBean">
+        <property name="parameter" value="string"/>
+    </bean>
+
+    <bean id="terminatorQuoter" class="com.lisun.spring.beans.TerminatorQuoter">
+        <property name="message" value="I`ll be back"/>
+    </bean>
+
+    <bean class="com.lisun.spring.aspects.MyFirstAspect"/>
+
+    <bean class="com.lisun.spring.postprocessors.PostConstructIntefaceResolverBeanPostProcessor"/>
+
+    <bean class="com.lisun.spring.postprocessors.TransactionalAnnotationBeanPostProcessor"/>
+</beans>

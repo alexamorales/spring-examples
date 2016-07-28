@@ -35,4 +35,11 @@ public class FirstBean {
         this.value = value;
     }
 
+    @Override
+    public String toString() {
+        return "FirstBean{" +
+                "value='" + value + '\'' +
+                ", parameter='" + parameter + '\'' +
+                '}';
+    }
 }

@@ -4,8 +4,6 @@ import com.lisun.spring.annotations.MyTransactional;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 
-import java.lang.reflect.InvocationHandler;
-import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 import java.util.HashMap;
 import java.util.Map;
@@ -17,7 +15,7 @@ import java.util.Map;
  */
 public class TransactionalAnnotationBeanPostProcessor implements BeanPostProcessor {
 
-   private Map<String, Class<?>> beanNames = new HashMap<>();
+    private Map<String, Class<?>> beanNames = new HashMap<>();
 
     @Override
     public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
@@ -35,7 +33,7 @@ public class TransactionalAnnotationBeanPostProcessor implements BeanPostProcess
         if (beanClass != null) {
             return Proxy.newProxyInstance(ClassLoader.getSystemClassLoader(), beanClass.getInterfaces(), (proxy, method, args) -> {
                 System.out.println("TRANS OPENED");
-                Object retVal = method.invoke(bean ,args);
+                Object retVal = method.invoke(bean, args);
                 System.out.println("TRANS CLOSED");
                 return retVal;
             });

@@ -1,5 +1,6 @@
 package com.lisun.spring;
 
+import com.lisun.spring.beans.FirstBean;
 import com.lisun.spring.beans.FirstComponent;
 import com.lisun.spring.beans.Quoter;
 import com.lisun.spring.configurable.MyFirstConfigurable;
@@ -32,7 +33,9 @@ public class App {
         terminatorQuoter.sayQuote();
 
         FirstComponent firstComponent = (FirstComponent) ctx.getBean("firstComponent");
+        firstComponent.setString("Yo!");
         System.out.println(firstComponent.getString());
+
 
         MyFirstConfigurable myFirstConfigurable = new MyFirstConfigurable();
         myFirstConfigurable.saySmthing();

@@ -3,6 +3,7 @@ package com.lisun.spring.configuration;
 import com.lisun.spring.beans.FirstBean;
 import com.lisun.spring.beans.SecondBean;
 import com.lisun.spring.beans.SimpleContainer;
+import com.lisun.spring.beans.TerminatorQuoter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -26,9 +27,15 @@ public class FirstConfiguration {
     @Autowired
     private Environment environment;
 
+    @Bean
+    public FirstBean firstBean() {
+        FirstBean firstBean = new FirstBean();
+        return firstBean;
+    }
+
     @Bean(name = "secondBean", initMethod = "name")
     public SecondBean getSecondBean() {
-        SecondBean secondBean = new SecondBean();
+        SecondBean secondBean = new SecondBean(firstBean());
         secondBean.setName("Nick");
 
         System.out.println("From environment: " + environment.getProperty("name"));
@@ -50,6 +57,12 @@ public class FirstConfiguration {
                 .build();
     }
 
+    @Bean
+    public TerminatorQuoter terminatorQuoter() {
+        TerminatorQuoter terminatorQuoter = new TerminatorQuoter();
+        terminatorQuoter.setMessage("I`ll be back");
+        return terminatorQuoter;
+    }
 
 
 }

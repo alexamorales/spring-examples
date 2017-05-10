@@ -32,9 +32,9 @@ public class TransactionalAnnotationBeanPostProcessor implements BeanPostProcess
         Class<?> beanClass = beanNames.get(beanName);
         if (beanClass != null) {
             return Proxy.newProxyInstance(ClassLoader.getSystemClassLoader(), beanClass.getInterfaces(), (proxy, method, args) -> {
-                System.out.println("TRANS OPENED");
+                System.out.println("TRANSACTION OPENED");
                 Object retVal = method.invoke(bean, args);
-                System.out.println("TRANS CLOSED");
+                System.out.println("TRANSACTION CLOSED");
                 return retVal;
             });
         }

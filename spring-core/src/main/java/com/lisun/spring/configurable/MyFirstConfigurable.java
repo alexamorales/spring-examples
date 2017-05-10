@@ -13,8 +13,12 @@ import org.springframework.beans.factory.annotation.Configurable;
 @Configurable
 public class MyFirstConfigurable {
 
+    private final FirstBean quoter;
+
     @Autowired
-    private FirstBean quoter;
+    public MyFirstConfigurable(FirstBean quoter) {
+        this.quoter = quoter;
+    }
 
     public void saySmthing() {
         quoter.showParameter();

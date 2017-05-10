@@ -11,10 +11,14 @@ import org.springframework.stereotype.Component;
 @Component
 public class SecondBean {
 
-    @Autowired
-    private FirstBean firstBean;
+    private final FirstBean firstBean;
 
     private String name;
+
+    @Autowired
+    public SecondBean(FirstBean firstBean) {
+        this.firstBean = firstBean;
+    }
 
     public void name() {
         System.out.println("Name: " + name + "First bean: " + firstBean.getValue());
